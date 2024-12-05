@@ -23,7 +23,7 @@ document.getElementById('formAdicionarItem').addEventListener('submit', async fu
             body: JSON.stringify(data), // Converte os dados para JSON
         };
 
-        const response = await fetch('http://localhost:8080/api/cadastrar', requestOptions);
+        const response = await fetch('http://localhost:8080/perfumaria', requestOptions);
 
         // Verifica se a resposta foi bem-sucedida
         if (!response.ok) {

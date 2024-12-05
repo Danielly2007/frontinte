@@ -8,35 +8,43 @@ async function getPerfumaria() {
   altDiv.innerHTML = '';
 
   // Iterar sobre os itens e criar o HTML dinâmico
-  fetch('http://localhost:8080/perfumaria')  
+  fetch('http://localhost:8080/perfumaria', {
+  method: 'GET',
+})
       .then(response => response.json()) 
-      .then(data => {
-
+      .then(data => {~
         console.log(data)
-          // Verificar se há dados antes de iterar
-          // if (data && Array.isArray(data)) {
-          //     data.forEach(item => {
-      // Adicionar item à lista
-      
-      const itemDiv = document.createElement('div');
-      itemDiv.innerHTML = `
-          <p1 class="teste">${itemDiv.nome}</p1>
-      `;
-      listaDiv.appendChild(itemDiv);
+        listaDiv = data;
+        lista();
+      })
+      .catch(error => {
+        console.error('Erro ao carregar os dados:', error);
+      });
 
-      // Adicionar botões de editar e excluir
-      const altButtonsDiv = document.createElement('div');
-      altButtonsDiv.innerHTML = `
+      function lista() {
+        
+      }
+
+      const itemDiv = document.createElement('div');
+      itemDiv.innerHTML = '';
+      lista.forEach((lista, index) => {
+        const altButtonsDiv = document.createElement('div');
+        altButtonsDiv.innerHTML = `
           <button class="lapis" onclick="editItem(${itemDiv.id})">
               <img src="/src/assets/images/lapis.png" class="lapis1">
           </button>
           <button class="lixo" onclick="deleteItem(${itemDiv.id})">
               <img src="/src/assets/images/lixo.png" class="lixo1">
           </button>
-      `;
-      altDiv.appendChild(altButtonsDiv);
-  });
-}
+          <td>${lista.name} </td>
+          <td>${lista.marca} </td>
+          <td>${lista.preco} </td>
+          `;
+          altDiv.appendChild(altButtonsDiv);
+          listaDiv.appendChild(itemDiv);
+      });
+
+     
 
 // Função de edição (vai abrir o modal e preencher com os dados do item)
 function editItem(id) {
@@ -60,4 +68,4 @@ function deleteItem(id) {
 }
 
 // Chamar a função para carregar os dados da perfumaria
-getPerfumaria();
+getPerfumaria();}

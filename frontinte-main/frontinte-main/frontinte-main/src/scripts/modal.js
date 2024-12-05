@@ -52,7 +52,7 @@ document.getElementById('myForm').onsubmit = function(event) {
 //   }
   
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 // Simulando um banco de dados com um array de itens
 let itens = [
